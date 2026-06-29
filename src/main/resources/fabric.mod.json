@@ -17,6 +17,7 @@
       "com.example.addon.AddonTemplate"
     ]
   },
+  "accessWidener": "addon-template.accesswidener",
   "mixins": [
     "addon-template.mixins.json"
   ],

@@ -8,6 +8,10 @@ base {
     group = properties["maven_group"] as String
 }
 
+loom {
+    accessWidenerPath.set(file("src/main/resources/addon-template.accesswidener"))
+}
+
 repositories {
     maven {
         name = "meteor-maven"
