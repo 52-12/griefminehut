@@ -1,7 +1,9 @@
 # GriefMinehut
 
 minehut sucks weird consolidated minecraft server
-used to be good
+
+it used to be good
+
 destroy all da servers no more players no more money for minehut mwahahahhahaa
 
 # Modules
