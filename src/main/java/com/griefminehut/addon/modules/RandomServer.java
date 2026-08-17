@@ -1,9 +1,9 @@
-package com.example.addon.modules;
+package com.griefminehut.addon.modules;
 
-import com.example.addon.AddonTemplate;
-import com.example.addon.minehut.MinehutApi;
-import com.example.addon.minehut.MinehutServer;
-import com.example.addon.minehut.PlanTier;
+import com.griefminehut.addon.GriefMinehut;
+import com.griefminehut.addon.minehut.MinehutApi;
+import com.griefminehut.addon.minehut.MinehutServer;
+import com.griefminehut.addon.minehut.PlanTier;
 import meteordevelopment.meteorclient.events.game.GameJoinedEvent;
 import meteordevelopment.meteorclient.events.game.OpenScreenEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
@@ -148,7 +148,7 @@ public class RandomServer extends Module {
     private final Set<String> triedNames = new HashSet<>();
 
     public RandomServer() {
-        super(AddonTemplate.CATEGORY, "random-server", "Joins a random Minehut server.");
+        super(GriefMinehut.CATEGORY, "random-server", "Joins a random Minehut server.");
         runInMainMenu = true;
         serialize = false;
     }
@@ -159,7 +159,7 @@ public class RandomServer extends Module {
         attempts = 0;
         triedNames.clear();
         if (!isOnMinehut()) {
-            AddonTemplate.LOG.error("Random Server only works on Minehut.");
+            GriefMinehut.LOG.error("Random Server only works on Minehut.");
             error("Random Server only works on Minehut.");
             toggle();
             return;
@@ -168,7 +168,7 @@ public class RandomServer extends Module {
             selectAndConnect();
         } else {
             MinehutApi.fetchAsync(servers -> selectAndConnect(), message -> {
-                AddonTemplate.LOG.error(message);
+                GriefMinehut.LOG.error(message);
                 error(message);
                 toggle();
             });
@@ -187,7 +187,7 @@ public class RandomServer extends Module {
     @EventHandler
     private void onGameJoined(GameJoinedEvent event) {
         if (phase != Phase.CONNECTING || pendingTarget == null) return;
-        AddonTemplate.LOG.info("Joined {}.", pendingTarget.name);
+        GriefMinehut.LOG.info("Joined {}.", pendingTarget.name);
         info("Joined %s.", pendingTarget.name);
         toggle();
     }
@@ -198,10 +198,10 @@ public class RandomServer extends Module {
         if (!(event.screen instanceof DisconnectedScreen)) return;
         attempts++;
         if (attempts <= maxRetries.get()) {
-            AddonTemplate.LOG.warn("Connection failed, retrying ({}/{}).", attempts, maxRetries.get());
+            GriefMinehut.LOG.warn("Connection failed, retrying ({}/{}).", attempts, maxRetries.get());
             retryPending = true;
         } else {
-            AddonTemplate.LOG.error("Could not join after {} attempts.", attempts);
+            GriefMinehut.LOG.error("Could not join after {} attempts.", attempts);
             toggle();
         }
     }
@@ -216,7 +216,7 @@ public class RandomServer extends Module {
     private void selectAndConnect() {
         List<MinehutServer> servers = MinehutApi.getCache();
         if (servers == null || servers.isEmpty()) {
-            AddonTemplate.LOG.error("No server list available.");
+            GriefMinehut.LOG.error("No server list available.");
             error("No server list available.");
             toggle();
             return;
@@ -226,7 +226,7 @@ public class RandomServer extends Module {
             if (matches(server)) candidates.add(server);
         }
         if (candidates.isEmpty()) {
-            AddonTemplate.LOG.error("No servers matched your filters.");
+            GriefMinehut.LOG.error("No servers matched your filters.");
             error("No servers matched your filters.");
             toggle();
             return;
@@ -238,7 +238,7 @@ public class RandomServer extends Module {
         if (announce.get()) {
             info("Joining %s (%d players).", pick.name, pick.getPlayerCount());
         }
-        AddonTemplate.LOG.info("Joining {} ({} players).", pick.name, pick.getPlayerCount());
+        GriefMinehut.LOG.info("Joining {} ({} players).", pick.name, pick.getPlayerCount());
         phase = Phase.CONNECTING;
         connect();
     }
@@ -246,7 +246,7 @@ public class RandomServer extends Module {
     private void connect() {
         if (phase != Phase.CONNECTING || pendingTarget == null) return;
         ServerInfo target = pendingTarget;
-        AddonTemplate.LOG.info("Connecting to {}.", target.address);
+        GriefMinehut.LOG.info("Connecting to {}.", target.address);
         ConnectScreen.connect(new TitleScreen(), mc, ServerAddress.parse(target.address), target, false, null);
     }
 

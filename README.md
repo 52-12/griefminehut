@@ -1,6 +1,6 @@
-# Meteor Addon Template
+# GriefMinehut
 
-A template to allow easy usage of the Meteor Addon API.
+A Meteor Client addon by 3upman that joins a random Minehut server.
 
 ### How to use
 

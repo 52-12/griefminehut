@@ -1,24 +1,24 @@
 {
   "schemaVersion": 1,
-  "id": "addon-template",
+  "id": "griefminehut",
   "version": "${version}",
-  "name": "Addon Template",
-  "description": "An addon template for Meteor Client addons.",
+  "name": "GriefMinehut",
+  "description": "Joins a random Minehut server.",
   "authors": [
-    "seasnail"
+    "3upman"
   ],
   "contact": {
-    "sources": "https://github.com/MeteorDevelopment/meteor-addon-template"
+    "sources": "https://github.com/52-12/griefminehut"
   },
-  "icon": "assets/template/icon.png",
+  "icon": "assets/griefminehut/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "com.example.addon.AddonTemplate"
+      "com.griefminehut.addon.GriefMinehut"
     ]
   },
   "mixins": [
-    "addon-template.mixins.json"
+    "griefminehut.mixins.json"
   ],
   "custom": {
     "meteor-client:color": "225,25,25",

@@ -1,4 +1,4 @@
-package com.example.addon.minehut;
+package com.griefminehut.addon.minehut;
 
 import meteordevelopment.meteorclient.utils.network.Http;
 import meteordevelopment.meteorclient.utils.network.MeteorExecutor;

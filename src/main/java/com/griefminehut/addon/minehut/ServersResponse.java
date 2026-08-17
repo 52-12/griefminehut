@@ -1,4 +1,4 @@
-package com.example.addon.minehut;
+package com.griefminehut.addon.minehut;
 
 import java.util.List;
 
